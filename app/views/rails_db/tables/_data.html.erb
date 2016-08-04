@@ -2,7 +2,7 @@
 
 <h2 class='left'>Table: <%= @table.name %></h2>
 <div class='right'>
-  <%= link_to '+ ADD', table_new_path(@table), remote: true, class: 'button small' %>
+  <%# link_to '+ ADD', table_new_path(@table), remote: true, class: 'button small' %>
 </div>
 
 <div class='clear'></div>
@@ -12,13 +12,8 @@
 <dl class="sub-nav">
   <dd><%= render '/rails_db/shared/exp_col' %></dd>
   <dd class="active"><%= link_to raw("#{fa_icon('table')} Records"), table_data_path(@table), remote: true %></dd>
-  <dd><%= link_to raw("#{fa_icon('tasks')} Schema"), table_path(@table), remote: true %></dd>
-  <dd><%= select_top_from_table(@table.name) %></dd>
   <dd>
     <a href="#" data-options="align: bottom" data-dropdown="download-files"><%= fa_icon 'download' %> Export</a>
-  </dd>
-  <dd>
-    <a href="#" data-options="align: bottom" data-dropdown="drop"><%= fa_icon 'th-large' %> Functions</a>
   </dd>
   <dd class="right"><%= link_to raw("#{fa_icon('cogs')} Settings"), '#', :class => 'settings-link', :table_name => "#{@table.name}" %></dd>
   <dd class="right"><%= link_to raw("#{fa_icon('search')} Search"), '#', :class => 'search-link' %></dd>
@@ -68,9 +63,6 @@
   <table id="search_records" class='table'>
     <thead>
       <tr>
-        <% if @table.primary_key %>
-          <th colspan="2">Actions</th>
-        <% end %>
         <% @model.column_names.each do |column| %>
           <th class="column_<%= column %>" style="<%= display_style_column(@table.name, column)%>">
             <%= sort_link @q, column, controller: :tables, action: :data %>
@@ -93,9 +85,6 @@
     <% if @records.size > 10 %>
       <tfoot>
         <tr>
-          <% if @table.primary_key %>
-            <th colspan="2">Actions</th>
-          <% end %>
           <% @model.column_names.each do |column| %>
             <th> <%= sort_link @q, column, controller: :tables, action: :data %> </th>
           <% end %>
@@ -107,7 +96,6 @@
 
 <p>
   <span class="radius success label">Total: <%= pluralize @records.total_count, 'record' %></span>
-  <span class="radius secondary label"><a href="#" data-reveal-id="sql_modal" id='sql_modal_link'>SQL</a></span>
 </p>
 
 <% if @records.total_count > 10 %>

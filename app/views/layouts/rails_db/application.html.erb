@@ -13,8 +13,8 @@
 <body>
   <%= display_flash_messages %>
   <% if RailsDb.enabled %>
-    <%= render 'rails_db/shared/header' %>
-    <div class="row">
+    <%# render 'rails_db/shared/header' %>
+    <div class="row" style="margin-top: 40px; margin-bottom: 40px;">
       <div id='main_content' class="<%= main_content_classes %>">
         <%= yield %>
       </div>
@@ -23,7 +23,7 @@
       </div>
     </div>
     <footer class="row">
-      <%= render 'rails_db/shared/footer' %>
+      <%# render 'rails_db/shared/footer' %>
     </footer>
   <% else %>
     <p>RailsDB is disabled. Please enable it in config/initializers/rails_db.rb</p>

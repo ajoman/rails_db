@@ -9,8 +9,6 @@
 <dl class="sub-nav">
   <dd><%= render '/rails_db/shared/exp_col' %></dd>
   <dd class="active"><%= link_to raw("#{fa_icon('table')} Records"), table_data_path(@table), remote: true %></dd>
-  <dd><%= link_to raw("#{fa_icon('tasks')} Schema"), table_path(@table), remote: true %></dd>
-  <dd><%= select_top_from_table(@table.name) %></dd>
   <dd>
     <a href="#" data-options="align: bottom" data-dropdown="download-files"><%= fa_icon 'download' %> Export</a>
   </dd>
